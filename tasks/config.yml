@@ -17,6 +17,19 @@
     - "{{ datacatalog_islandoraq_dir }}/ssl/client"
     - "{{ datacatalog_islandoraq_dir }}/ssl/testca"
 
+- name: copy datacatalog pubkeys
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: celery
+    group: celery
+    mode: 0644
+  with_items:
+    - src: cert.pem
+      dest: "{{ datacatalog_islandoraq_dir }}/ssl/client/cert.pem"
+    - src: cacert.pem
+      dest: "{{ datacatalog_islandoraq_dir }}/ssl/testca/cacert.pem"
+
 - name: copy deployment keys
   copy:
     content: "{{ item.content }}"
