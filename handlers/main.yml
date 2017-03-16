@@ -1,0 +1,4 @@
+---
+# handlers file for datacatalog-islandoraq
+- name: reload systemd
+  command: systemctl daemon-reload

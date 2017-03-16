@@ -1,0 +1,9 @@
+[Unit]
+Description=OULibraries oulib-datacatalog/islandoraq Worker Service
+
+[Service]
+ExecStart={{ datacatalog_islandoraq_dir }}/virtpy/bin/python {{ datacatalog_islandoraq_dir }}/virtpy/bin/celery worker -l INFO -Q islandoraq -n islandora --serve-in-foreground
+
+[Install]
+WantedBy=multi-user.target
+Alias=oulib-islandoraq.service

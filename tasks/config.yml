@@ -1,0 +1,42 @@
+---
+
+- name: Add celery user
+  user:
+    name: celery
+    state: present
+
+- name: Ensure installation directories
+  file:
+    path: "{{ item }}"
+    owner: celery
+    group: celery
+    mode: 0770
+    state: directory
+    recurse: yes
+  with_items:
+    - "{{ datacatalog_islandoraq_dir }}/ssl/client"
+    - "{{ datacatalog_islandoraq_dir }}/ssl/testca"
+
+- name: copy deployment keys
+  copy:
+    content: "{{ item.content }}"
+    dest: "{{ item.dest }}"
+    owner: celery
+    group: celery
+    mode: 0600
+  no_log: true
+  with_items:
+    - content: "{{ datacatalog_islandora_rabbit_key_content }}"
+      dest: "{{ datacatalog_islandoraq_dir }}/ssl/client/key.pem"
+    - content: "{{ datacatalog_islandora_mongo_key_content }}"
+      dest: "{{ datacatalog_islandoraq_dir }}/ssl/client/mongodb.pem"
+
+- name: Install oulib-ngrok service
+  template:
+    src: oulib-islandoraq.service.j2
+    dest: /lib/systemd/system/oulib-islandoraq.service
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - reload systemd

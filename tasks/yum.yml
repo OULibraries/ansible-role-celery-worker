@@ -1,0 +1,12 @@
+---
+
+- name: Packages for yum.
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gcc
+    - python-devel
+    - python-virtualenv
+    - libffi-devel
+    - openssl-devel

@@ -1,0 +1,9 @@
+---
+# defaults file for datacatalog-islandoraq
+datacatalog_islandora_dir: /opt/oulib/islandoraq-worker
+
+# vault-protected private key. defaults to empty.
+datacatalog_islandora_rabbit_key_content:
+
+# vault-protected private key. defaults to empty.
+datacatalog_islandora_mongo_key_content: 

@@ -1,0 +1,15 @@
+---
+
+- name: Pip Packages
+  pip:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+    virtualenv: "{{ datacatalog_islandoraq_dir }}/virtpy"
+    virtualenv_site_packages: yes
+    state: present
+  with_items:
+  - name: celery
+    version: 3.1.22
+  - name: pymongo
+    version: 3.2.1
+  - name: git+https://github.com/oulib-datacatalog/islandoraq
