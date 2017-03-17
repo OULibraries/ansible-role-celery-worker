@@ -1,12 +1,6 @@
 ---
 # tasks file for datacatalog-islandoraq
 
-# Die immediately if we don't have certs
-- assert: { that: "{{ item }} is defined and is not none" }
-  with_items:
-    - "{{ datacatalog_islandoraq_rabbit_key_content }}"
-    - "{{ datacatalog_islandoraq_mongo_key_content }}"
-
 - include: config.yml
   become: true
 
