@@ -1,7 +1,7 @@
-Role Name
+OULibraries.datacatalog-islandoraq
 =========
 
-A brief description of the role goes here.
+Celery worker for oulib-datacatalog/islandoraq.
 
 Requirements
 ------------
@@ -35,4 +35,4 @@ TBD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Jason Sherman
