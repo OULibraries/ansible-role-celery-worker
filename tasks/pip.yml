@@ -13,3 +13,4 @@
   - name: pymongo
     version: 3.2.1
   - name: git+https://github.com/oulib-datacatalog/islandoraq
+    version: master
