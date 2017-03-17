@@ -2,3 +2,11 @@
 # handlers file for datacatalog-islandoraq
 - name: reload systemd
   command: systemctl daemon-reload
+  become: true
+
+- name: restart oulib-islandoraq.service
+  service:
+    name: oulib-islandoraq
+    state: restarted
+    enabled: yes
+  become: true

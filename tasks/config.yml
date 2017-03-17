@@ -53,3 +53,4 @@
     group: root
   notify:
     - reload systemd
+    - restart oulib-islandoraq.service

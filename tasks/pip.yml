@@ -1,6 +1,6 @@
 ---
 
-- name: Pip Packages
+- name: Pip dependencies
   pip:
     name: "{{ item.name }}"
     version: "{{ item.version }}"
@@ -12,5 +12,15 @@
     version: 3.1.22
   - name: pymongo
     version: 3.2.1
+
+- name: Islandoraq
+  pip:
+    name: "{{ item.name }}"
+    virtualenv: "{{ datacatalog_islandoraq_dir }}/virtpy"
+    virtualenv_site_packages: yes
+    state: present
+    editable: false
+  with_items:
   - name: git+https://github.com/oulib-datacatalog/islandoraq
-    version: master
+  notify:
+    - restart oulib-islandoraq.service
