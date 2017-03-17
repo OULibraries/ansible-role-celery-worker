@@ -2,6 +2,7 @@
 Description=OULibraries oulib-datacatalog/islandoraq Worker Service
 
 [Service]
+Environment=PYTHONPATH={{ datacatalog_islandoraq_dir }}
 ExecStart={{ datacatalog_islandoraq_dir }}/virtpy/bin/python {{ datacatalog_islandoraq_dir }}/virtpy/bin/celery worker -l WARN -Q islandoraq -n islandora
 User=celery
 
