@@ -1,0 +1,19 @@
+import os
+import ssl
+appname = "{{ datacatalog_islandoraq_celery_appname }}"
+BROKER_URL = '{{ datacatalog_islandoraq_celery_broker_url }}'
+BROKER_USE_SSL = {
+  'keyfile': 'ssl/client/key.pem',
+  'certfile': 'ssl/client/cert.pem',
+  'ca_certs': 'ssl/testca/cacert.pem',
+  'cert_reqs': ssl.CERT_REQUIRED
+}
+CELERY_SEND_EVENTS = True
+CELERY_TASK_RESULT_EXPIRES = None
+CELERY_ACCEPT_CONTENT = ['pickle','json']
+CELERY_RESULT_BACKEND = "{{ datacatalog_islandoraq_celery_result_backend }}"
+CELERY_MONGODB_BACKEND_SETTINGS = {
+    "database": "{{ datacatalog_islandoraq_celery_mongodb }}",
+    "taskmeta_collection": "{{ datacatalog_islandoraq_celery_mongo_collection }}"
+}
+CELERY_IMPORTS = ("{{ datacatalog_islandoraq_celery_imports }}", )
