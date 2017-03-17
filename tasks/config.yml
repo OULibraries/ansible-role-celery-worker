@@ -17,7 +17,7 @@
     - "{{ datacatalog_islandoraq_dir }}/ssl/client"
     - "{{ datacatalog_islandoraq_dir }}/ssl/testca"
 
-- name: copy datacatalog pubkeys
+- name: Copy datacatalog pubkeys
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -30,7 +30,7 @@
     - src: cacert.pem
       dest: "{{ datacatalog_islandoraq_dir }}/ssl/testca/cacert.pem"
 
-- name: copy deployment keys
+- name: Copy deployment keys
   copy:
     content: "{{ item.content }}"
     dest: "{{ item.dest }}"
@@ -43,6 +43,14 @@
       dest: "{{ datacatalog_islandoraq_dir }}/ssl/client/key.pem"
     - content: "{{ datacatalog_islandoraq_mongo_key_content }}"
       dest: "{{ datacatalog_islandoraq_dir }}/ssl/client/mongodb.pem"
+
+- name: Template celery worker configuration
+  template:
+    src: celeryconfig.py.j2
+    dest: "{{ datacatalog_islandoraq_dir }}/celeryconfig.py"
+    owner: celery
+    group: celery
+    mode: 0600
 
 - name: Install oulib-islandoraq service
   template:

@@ -7,3 +7,11 @@ datacatalog_islandoraq_rabbit_key_content:
 
 # vault-protected private key. defaults to empty.
 datacatalog_islandoraq_mongo_key_content: 
+
+# Config for celery worker
+datacatalog_islandoraq_celery_appname:
+datacatalog_islandoraq_celery_broker_url:
+datacatalog_islandoraq_celery_result_backend :
+datacatalog_islandoraq_celery_mongodb:
+datacatalog_islandoraq_celery_mongo_collection:
+datacatalog_islandoraq_celery_imports:
