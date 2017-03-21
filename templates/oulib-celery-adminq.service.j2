@@ -1,0 +1,11 @@
+[Unit]
+Description=OULibraries oulib-celery/adminq Service
+
+[Service]
+WorkingDirectory={{ celery_adminq_dir }}
+ExecStart={{ celery_adminq_dir }}/virtpy/bin/python {{ celery_adminq_dir }}/virtpy/bin/celery worker -l WARN -Q {{ celery_adminq_imports }} -n {{ celery_adminq_hostname }}
+User={{ celery_adminq_user }}
+
+[Install]
+WantedBy=multi-user.target
+Alias=oulib-celery-adminq.service
