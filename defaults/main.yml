@@ -1,6 +1,9 @@
 ---
 # defaults file for celery-workerq
-celery_workerq_dir: /opt/oulib/workerq-worker
+celery_workerq_dir: /opt/oulib/celery-workerq
+
+# Celery workerq unix account
+celery_workerq_user:
 
 # vault-protected private key. defaults to empty.
 celery_workerq_rabbit_key_content:

@@ -1,15 +1,15 @@
 ---
 
-- name: Add celery user
+- name: Add workerq user
   user:
-    name: celery
+    name: "{{ celery_workerq_user }}"
     state: present
 
 - name: Ensure installation directories
   file:
     path: "{{ item }}"
-    owner: celery
-    group: celery
+    owner: "{{ celery_workerq_user }}"
+    group: "{{ celery_workerq_user }}"
     mode: 0770
     state: directory
     recurse: yes
@@ -17,12 +17,12 @@
     - "{{ celery_workerq_dir }}/ssl/client"
     - "{{ celery_workerq_dir }}/ssl/testca"
 
-- name: Copy celery pubkeys
+- name: Copy pubkeys
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: celery
-    group: celery
+    owner: "{{ celery_workerq_user }}"
+    group: "{{ celery_workerq_user }}"
     mode: 0644
   with_items:
     - src: cert.pem
@@ -34,8 +34,8 @@
   copy:
     content: "{{ item.content }}"
     dest: "{{ item.dest }}"
-    owner: celery
-    group: celery
+    owner: "{{ celery_workerq_user }}"
+    group: "{{ celery_workerq_user }}"
     mode: 0600
   no_log: true
   with_items:
@@ -44,12 +44,12 @@
     - content: "{{ celery_workerq_mongo_key_content }}"
       dest: "{{ celery_workerq_dir }}/ssl/client/mongodb.pem"
 
-- name: Template celery worker configuration
+- name: Template celery workerq configuration
   template:
     src: celeryconfig.py.j2
     dest: "{{ celery_workerq_dir }}/celeryconfig.py"
-    owner: celery
-    group: celery
+    owner: "{{ celery_workerq_user }}"
+    group: "{{ celery_workerq_user }}"
     mode: 0600
 
 - name: Install oulib-celery-workerq service
