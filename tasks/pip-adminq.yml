@@ -1,0 +1,24 @@
+---
+
+- name: Pip dependencies
+  pip:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+    virtualenv: "{{ celery_adminq_dir }}/virtpy"
+    virtualenv_site_packages: yes
+    state: present
+  with_items:
+  - name: celery
+    version: 3.1.22
+  - name: pymongo
+    version: 3.2.1
+
+- name: celery adminq module
+  pip:
+    name: "git+{{ celery_adminq_git }}"
+    virtualenv: "{{ celery_adminq_dir }}/virtpy"
+    virtualenv_site_packages: yes
+    state: present
+    editable: false
+  notify:
+    - restart oulib-celery-adminq.service

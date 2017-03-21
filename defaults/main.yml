@@ -1,7 +1,7 @@
 ---
 # defaults file for celery-workerq
 celery_workerq_dir: /opt/oulib/celery-workerq
-
+celery_workerq_git:
 # Celery workerq unix account
 celery_workerq_user:
 
@@ -22,6 +22,7 @@ celery_workerq_hostname:
 
 # defaults file for celery-adminq
 celery_adminq_dir: /opt/oulib/celery-adminq
+celery_adminq_git:
 
 # Celery adminq unix account
 celery_adminq_user:

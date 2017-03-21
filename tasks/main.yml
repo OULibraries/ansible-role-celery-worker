@@ -10,5 +10,8 @@
 - include: yum.yml
   become: true
 
-- include: pip.yml
+- include: pip-workerq.yml
+  become: true
+
+- include: pip-adminq.yml
   become: true
