@@ -11,7 +11,7 @@ celery_workerq_rabbit_key_content:
 # vault-protected private key. defaults to empty.
 celery_workerq_mongo_key_content: 
 
-# Config for celery worker
+# Config for celery workerq
 celery_workerq_appname:
 celery_workerq_broker_url:
 celery_workerq_result_backend :
@@ -19,3 +19,24 @@ celery_workerq_mongodb:
 celery_workerq_mongo_collection:
 celery_workerq_imports:
 celery_workerq_hostname:
+
+# defaults file for celery-adminq
+celery_adminq_dir: /opt/oulib/celery-adminq
+
+# Celery adminq unix account
+celery_adminq_user:
+
+# vault-protected private key. defaults to empty.
+celery_adminq_rabbit_key_content:
+
+# vault-protected private key. defaults to empty.
+celery_adminq_mongo_key_content:
+
+# Config for celery adminq
+celery_adminq_appname:
+celery_adminq_broker_url:
+celery_adminq_result_backend :
+celery_adminq_mongodb:
+celery_adminq_mongo_collection:
+celery_adminq_imports:
+celery_adminq_hostname:

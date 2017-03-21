@@ -1,7 +1,10 @@
 ---
 # tasks file for celery-workerq
 
-- include: config.yml
+- include: config-workerq.yml
+  become: true
+
+- include: config-adminq.yml
   become: true
 
 - include: yum.yml

@@ -46,7 +46,7 @@
 
 - name: Template celery workerq configuration
   template:
-    src: celeryconfig.py.j2
+    src: workerq-celeryconfig.py.j2
     dest: "{{ celery_workerq_dir }}/celeryconfig.py"
     owner: "{{ celery_workerq_user }}"
     group: "{{ celery_workerq_user }}"

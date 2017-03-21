@@ -1,0 +1,19 @@
+import os
+import ssl
+appname = "{{ celery_adminq_appname }}"
+BROKER_URL = '{{ celery_adminq_broker_url }}'
+BROKER_USE_SSL = {
+  'keyfile': 'ssl/client/key.pem',
+  'certfile': 'ssl/client/cert.pem',
+  'ca_certs': 'ssl/testca/cacert.pem',
+  'cert_reqs': ssl.CERT_REQUIRED
+}
+CELERY_SEND_EVENTS = True
+CELERY_TASK_RESULT_EXPIRES = None
+CELERY_ACCEPT_CONTENT = ['pickle','json']
+CELERY_RESULT_BACKEND = "{{ celery_adminq_result_backend }}"
+CELERY_MONGODB_BACKEND_SETTINGS = {
+    "database": "{{ celery_adminq_mongodb }}",
+    "taskmeta_collection": "{{ celery_adminq_mongo_collection }}"
+}
+CELERY_IMPORTS = ("{{ celery_adminq_imports }}", )

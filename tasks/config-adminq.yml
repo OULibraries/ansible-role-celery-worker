@@ -1,0 +1,64 @@
+---
+
+- name: Add adminq user
+  user:
+    name: "{{ celery_adminq_user }}"
+    state: present
+
+- name: Ensure installation directories
+  file:
+    path: "{{ item }}"
+    owner: "{{ celery_adminq_user }}"
+    group: "{{ celery_adminq_user }}"
+    mode: 0770
+    state: directory
+    recurse: yes
+  with_items:
+    - "{{ celery_adminq_dir }}/ssl/client"
+    - "{{ celery_adminq_dir }}/ssl/testca"
+
+- name: Copy pubkeys
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ celery_adminq_user }}"
+    group: "{{ celery_adminq_user }}"
+    mode: 0644
+  with_items:
+    - src: cert.pem
+      dest: "{{ celery_adminq_dir }}/ssl/client/cert.pem"
+    - src: cacert.pem
+      dest: "{{ celery_adminq_dir }}/ssl/testca/cacert.pem"
+
+- name: Copy deployment keys
+  copy:
+    content: "{{ item.content }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ celery_adminq_user }}"
+    group: "{{ celery_adminq_user }}"
+    mode: 0600
+  no_log: true
+  with_items:
+    - content: "{{ celery_adminq_rabbit_key_content }}"
+      dest: "{{ celery_adminq_dir }}/ssl/client/key.pem"
+    - content: "{{ celery_adminq_mongo_key_content }}"
+      dest: "{{ celery_adminq_dir }}/ssl/client/mongodb.pem"
+
+- name: Template celery adminq configuration
+  template:
+    src: adminq-celeryconfig.py.j2
+    dest: "{{ celery_adminq_dir }}/celeryconfig.py"
+    owner: "{{ celery_adminq_user }}"
+    group: "{{ celery_adminq_user }}"
+    mode: 0600
+
+- name: Install oulib-celery-adminq service
+  template:
+    src: oulib-celery-adminq.service.j2
+    dest: /lib/systemd/system/oulib-celery-adminq.service
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - reload systemd
+    - restart oulib-celery-adminq.service
