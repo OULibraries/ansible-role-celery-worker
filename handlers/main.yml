@@ -1,12 +1,12 @@
 ---
-# handlers file for datacatalog-islandoraq
+# handlers file for celery-workerq
 - name: reload systemd
   command: systemctl daemon-reload
   become: true
 
-- name: restart oulib-islandoraq.service
+- name: restart oulib-celery-workerq.service
   service:
-    name: oulib-islandoraq
+    name: oulib-celery-workerq
     state: restarted
     enabled: yes
   become: true

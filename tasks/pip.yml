@@ -4,7 +4,7 @@
   pip:
     name: "{{ item.name }}"
     version: "{{ item.version }}"
-    virtualenv: "{{ datacatalog_islandoraq_dir }}/virtpy"
+    virtualenv: "{{ celery_workerq_dir }}/virtpy"
     virtualenv_site_packages: yes
     state: present
   with_items:
@@ -16,11 +16,11 @@
 - name: Islandoraq
   pip:
     name: "{{ item.name }}"
-    virtualenv: "{{ datacatalog_islandoraq_dir }}/virtpy"
+    virtualenv: "{{ celery_workerq_dir }}/virtpy"
     virtualenv_site_packages: yes
     state: present
     editable: false
   with_items:
-  - name: git+https://github.com/oulib-datacatalog/islandoraq
+  - name: git+https://github.com/oulib-celery/workerq
   notify:
-    - restart oulib-islandoraq.service
+    - restart oulib-celery-workerq.service

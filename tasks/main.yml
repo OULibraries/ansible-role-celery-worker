@@ -1,5 +1,5 @@
 ---
-# tasks file for datacatalog-islandoraq
+# tasks file for celery-workerq
 
 - include: config.yml
   become: true

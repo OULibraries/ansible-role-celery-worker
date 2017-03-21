@@ -14,10 +14,10 @@
     state: directory
     recurse: yes
   with_items:
-    - "{{ datacatalog_islandoraq_dir }}/ssl/client"
-    - "{{ datacatalog_islandoraq_dir }}/ssl/testca"
+    - "{{ celery_workerq_dir }}/ssl/client"
+    - "{{ celery_workerq_dir }}/ssl/testca"
 
-- name: Copy datacatalog pubkeys
+- name: Copy celery pubkeys
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -26,9 +26,9 @@
     mode: 0644
   with_items:
     - src: cert.pem
-      dest: "{{ datacatalog_islandoraq_dir }}/ssl/client/cert.pem"
+      dest: "{{ celery_workerq_dir }}/ssl/client/cert.pem"
     - src: cacert.pem
-      dest: "{{ datacatalog_islandoraq_dir }}/ssl/testca/cacert.pem"
+      dest: "{{ celery_workerq_dir }}/ssl/testca/cacert.pem"
 
 - name: Copy deployment keys
   copy:
@@ -39,26 +39,26 @@
     mode: 0600
   no_log: true
   with_items:
-    - content: "{{ datacatalog_islandoraq_rabbit_key_content }}"
-      dest: "{{ datacatalog_islandoraq_dir }}/ssl/client/key.pem"
-    - content: "{{ datacatalog_islandoraq_mongo_key_content }}"
-      dest: "{{ datacatalog_islandoraq_dir }}/ssl/client/mongodb.pem"
+    - content: "{{ celery_workerq_rabbit_key_content }}"
+      dest: "{{ celery_workerq_dir }}/ssl/client/key.pem"
+    - content: "{{ celery_workerq_mongo_key_content }}"
+      dest: "{{ celery_workerq_dir }}/ssl/client/mongodb.pem"
 
 - name: Template celery worker configuration
   template:
     src: celeryconfig.py.j2
-    dest: "{{ datacatalog_islandoraq_dir }}/celeryconfig.py"
+    dest: "{{ celery_workerq_dir }}/celeryconfig.py"
     owner: celery
     group: celery
     mode: 0600
 
-- name: Install oulib-islandoraq service
+- name: Install oulib-celery-workerq service
   template:
-    src: oulib-islandoraq.service.j2
-    dest: /lib/systemd/system/oulib-islandoraq.service
+    src: oulib-celery-workerq.service.j2
+    dest: /lib/systemd/system/oulib-celery-workerq.service
     mode: 0644
     owner: root
     group: root
   notify:
     - reload systemd
-    - restart oulib-islandoraq.service
+    - restart oulib-celery-workerq.service

@@ -1,6 +1,6 @@
 galaxy_info:
   author: Jason Sherman
-  description: celery worker for oulib-datacatalog/islandoraq
+  description: celery worker for oulib-celery/workerq
   company: University of Oklahoma Libraries
 
   # If the issue tracker for your role is not on github, uncomment the

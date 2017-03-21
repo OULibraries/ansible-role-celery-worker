@@ -1,7 +1,7 @@
-OULibraries.datacatalog-islandoraq
+OULibraries.celery-workerq
 =========
 
-Celery worker for oulib-datacatalog/islandoraq.
+Celery worker for oulib-celery/workerq.
 
 Requirements
 ------------
