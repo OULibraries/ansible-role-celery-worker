@@ -10,3 +10,10 @@
     state: restarted
     enabled: yes
   become: true
+
+- name: restart oulib-celery-adminq.service
+  service:
+    name: oulib-celery-adminq
+    state: restarted
+    enabled: yes
+  become: true
