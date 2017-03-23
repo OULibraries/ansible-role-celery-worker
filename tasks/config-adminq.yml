@@ -9,6 +9,15 @@
     system: yes
     state: present
 
+- name: Copy sudoers
+  template:
+    src: sudoers.d-00-oulib-celery-adminq.j2
+    dest: /etc/sudoers.d/00-oulib-celery-adminq
+    mode: 0400
+    owner: root
+    group: root
+  validate: 'visudo -cf %s'
+
 - name: Ensure installation directories
   file:
     path: "{{ item }}"
