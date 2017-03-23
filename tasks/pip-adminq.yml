@@ -22,3 +22,10 @@
     editable: false
   notify:
     - restart oulib-celery-adminq.service
+
+- name: Ensure virtual environment permissions
+  file:
+    path: "{{ celery_adminq_dir }}/virtpy"
+    owner: "{{ celery_adminq_user }}"
+    group: "{{ celery_adminq_user }}"
+    recurse: yes

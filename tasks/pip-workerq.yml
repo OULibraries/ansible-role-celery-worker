@@ -22,3 +22,10 @@
     editable: false
   notify:
     - restart oulib-celery-workerq.service
+
+- name: Ensure virtual environment permissions
+  file:
+    path: "{{ celery_workerq_dir }}/virtpy"
+    owner: "{{ celery_workerq_user }}"
+    group: "{{ celery_workerq_user }}"
+    recurse: yes
