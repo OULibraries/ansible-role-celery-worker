@@ -3,7 +3,7 @@ Description=OULibraries oulib-celery/workerq Service
 
 [Service]
 WorkingDirectory={{ celery_workerq_dir }}
-ExecStart={{ celery_workerq_dir }}/virtpy/bin/python {{ celery_workerq_dir }}/virtpy/bin/celery worker -l WARN -Q {{ celery_workerq_imports }} -n {{ celery_workerq_hostname }}
+ExecStart={{ celery_workq_dir }}/virtpy/bin/python {{ celery_workq_dir }}/virtpy/bin/celery worker --queues {{ celery_workq_imports }} --hostname {{ celery_workq_hostname }} --logfile {{ celery_workq_log_dir }}/{{ celery_workq_imports }}.log --loglevel WARN
 User={{ celery_workerq_user }}
 
 [Install]

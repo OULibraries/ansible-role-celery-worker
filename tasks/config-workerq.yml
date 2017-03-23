@@ -16,6 +16,7 @@
   with_items:
     - "{{ celery_workerq_dir }}/ssl/client"
     - "{{ celery_workerq_dir }}/ssl/testca"
+    - "{{ celery_workerq_log_dir }}"
 
 - name: Copy pubkeys
   copy:
