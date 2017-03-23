@@ -16,7 +16,7 @@
     mode: 0400
     owner: root
     group: root
-  validate: 'visudo -cf %s'
+    validate: 'visudo -cf %s'
 
 - name: Ensure installation directories
   file:
