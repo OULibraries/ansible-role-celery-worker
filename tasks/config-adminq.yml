@@ -3,6 +3,10 @@
 - name: Add adminq user
   user:
     name: "{{ celery_adminq_user }}"
+    shell: /sbin/nologin
+    home: /
+    createhome: no
+    system: yes
     state: present
 
 - name: Ensure installation directories
@@ -16,7 +20,15 @@
   with_items:
     - "{{ celery_adminq_dir }}/ssl/client"
     - "{{ celery_adminq_dir }}/ssl/testca"
-    - "{{ celery_adminq_log_dir }}"
+
+- name: Ensure log directory
+  file:
+    path: "{{ celery_adminq_log_dir }}"
+    owner: "{{ celery_adminq_user }}"
+    group: "{{ celery_adminq_user }}"
+    mode: 0775
+    state: directory
+    recurse: yes
 
 - name: Copy pubkeys
   copy:
