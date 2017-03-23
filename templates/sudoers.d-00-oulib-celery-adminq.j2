@@ -1,2 +1,2 @@
 # Allow {{ celery_adminq_user }} to start/stop/restart oulib-celery-workerq service
-{{ celery_adminq_user }} ALL=NOPASSWD:/usr/bin/systemctl oulib-celery-workerq start, /usr/bin/systemctl oulib-celery-workerq stop, /usr/bin/systemctl oulib-celery-workerq restart
+{{ celery_adminq_user }} ALL=NOPASSWD:/usr/bin/systemctl start oulib-celery-workerq, /usr/bin/systemctl stop oulib-celery-workerq, /usr/bin/systemctl restart oulib-celery-workerq
