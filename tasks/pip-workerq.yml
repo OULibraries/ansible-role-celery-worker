@@ -15,7 +15,6 @@
 
 - name: celery workerq module
   pip:
-    name: "git+{{ celery_workerq_git }}"
     virtualenv: "{{ celery_workerq_dir }}/virtpy"
     virtualenv_site_packages: yes
     requirements: "{{ celery_workerq_dir }}/requirements.txt"
