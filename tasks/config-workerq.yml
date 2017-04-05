@@ -61,9 +61,17 @@
   template:
     src: workerq-celeryconfig.py.j2
     dest: "{{ celery_workerq_dir }}/celeryconfig.py"
-    owner: "{{ celery_workerq_user }}"
+    owner: root
     group: "{{ celery_workerq_user }}"
-    mode: 0600
+    mode: 0640
+
+- name: Template celery workerq requirements.txt
+  template:
+    src: workerq-requirements.txt.j2
+    dest: "{{ celery_workerq_dir }}/requirements.txt"
+    owner: root
+    group: "{{ celery_workerq_user }}"
+    mode: 0640
 
 - name: Install oulib-celery-workerq service
   template:

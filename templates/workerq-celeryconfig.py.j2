@@ -1,5 +1,12 @@
 import os
 import ssl
+
+{% if ((celery_workerq_extravars is defined) and (celery_workerq_extravars is not none)) %}
+{% for var in celery_workerq_extravars %}
+{{ var.name }} = '{{ var.value }}'
+{% endfor %}
+{% endif %}
+
 appname = "{{ celery_workerq_appname }}"
 BROKER_URL = '{{ celery_workerq_broker_url }}'
 BROKER_USE_SSL = {
@@ -16,4 +23,7 @@ CELERY_MONGODB_BACKEND_SETTINGS = {
     "database": "{{ celery_workerq_mongodb }}",
     "taskmeta_collection": "{{ celery_workerq_mongo_collection }}"
 }
+
+pip.main(['install', '--log', '{{ celery_workerq_log_dir }}/pip.log', '-r', 'requirements.txt'])
+
 CELERY_IMPORTS = ("{{ celery_workerq_imports }}", )

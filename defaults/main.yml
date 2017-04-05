@@ -2,44 +2,51 @@
 # defaults file for celery-workerq
 celery_workerq_dir: /opt/oulib/celery-workerq
 celery_workerq_log_dir: /var/opt/oulib/celery-workerq/log
-celery_workerq_git:
+celery_workerq_zip: !!null
 # Celery workerq unix account
-celery_workerq_user:
+celery_workerq_user: !!null
 
-# vault-protected private key. defaults to empty.
-celery_workerq_rabbit_key_content:
+# vault-protected private key. defaults to null.
+celery_workerq_rabbit_key_content: !!null
 
-# vault-protected private key. defaults to empty.
-celery_workerq_mongo_key_content: 
+# vault-protected private key. defaults to null.
+celery_workerq_mongo_key_content: !!null
 
 # Config for celery workerq
-celery_workerq_appname:
-celery_workerq_broker_url:
-celery_workerq_result_backend :
-celery_workerq_mongodb:
-celery_workerq_mongo_collection:
-celery_workerq_imports:
-celery_workerq_hostname:
+celery_workerq_appname: !!null
+celery_workerq_broker_url: !!null
+celery_workerq_result_backend: !!null
+celery_workerq_mongodb: !!null
+celery_workerq_mongo_collection: !!null
+celery_workerq_imports: !!null
+celery_workerq_hostname: !!null
+
+# Extra variables to add to celery workerq celeryconfig
+celery_workerq_extravars: !!null
+#  - name: somevar
+#    value: somval
+#  - name: anothervar
+#    value: anothervar
 
 # defaults file for celery-adminq
 celery_adminq_dir: /opt/oulib/celery-adminq
 celery_adminq_log_dir: /var/opt/oulib/celery-adminq/log
-celery_adminq_git:
+celery_adminq_git: !!null
 
 # Celery adminq unix account
-celery_adminq_user:
+celery_adminq_user: !!null
 
-# vault-protected private key. defaults to empty.
-celery_adminq_rabbit_key_content:
+# vault-protected private key. defaults to null.
+celery_adminq_rabbit_key_content: !!null
 
-# vault-protected private key. defaults to empty.
-celery_adminq_mongo_key_content:
+# vault-protected private key. defaults to null.
+celery_adminq_mongo_key_content: !!null
 
-# Config for celery adminq
-celery_adminq_appname:
-celery_adminq_broker_url:
-celery_adminq_result_backend :
-celery_adminq_mongodb:
-celery_adminq_mongo_collection:
-celery_adminq_imports:
-celery_adminq_hostname:
+# Config for celery adminq. defaults to null.
+celery_adminq_appname: !!null
+celery_adminq_broker_url: !!null
+celery_adminq_result_backend: !!null
+celery_adminq_mongodb: !!null
+celery_adminq_mongo_collection: !!null
+celery_adminq_imports: !!null
+celery_adminq_hostname: !!null
