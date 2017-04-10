@@ -3,7 +3,7 @@ Description=OULibraries oulib-celery/workerq Service Installer
 
 [Service]
 WorkingDirectory={{ celery_workerq_dir }}
-ExecStart={{ celery_workerq_dir }}/virtpy/bin/python pip install -r requirements.txt --log {{ celery_workerq_log_dir }}/pip.log
+ExecStart={{ celery_workerq_dir }}/virtpy/bin/python {{ celery_workerq_dir }}/virtpy/bin/pip install -r requirements.txt --log {{ celery_workerq_log_dir }}/pip.log
 User={{ celery_workerq_user }}
 Type=oneshot
 
