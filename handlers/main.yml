@@ -4,6 +4,13 @@
   command: systemctl daemon-reload
   become: true
 
+- name: start oulib-celery-workerq-installer.service
+  service:
+    name: oulib-celery-workerq
+    state: started
+    enabled: yes
+  become: true
+
 - name: restart oulib-celery-workerq.service
   service:
     name: oulib-celery-workerq

@@ -1,5 +1,4 @@
 import os
-import pip
 import ssl
 
 {% if ((celery_workerq_extravars is defined) and (celery_workerq_extravars is not none)) %}
@@ -24,7 +23,5 @@ CELERY_MONGODB_BACKEND_SETTINGS = {
     "database": "{{ celery_workerq_mongodb }}",
     "taskmeta_collection": "{{ celery_workerq_mongo_collection }}"
 }
-
-pip.main(['install', '--log', '{{ celery_workerq_log_dir }}/pip.log', '-r', 'requirements.txt'])
 
 CELERY_IMPORTS = ("{{ celery_workerq_imports }}", )

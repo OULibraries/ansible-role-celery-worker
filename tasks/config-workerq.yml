@@ -73,6 +73,17 @@
     group: "{{ celery_workerq_user }}"
     mode: 0640
 
+- name: Install oulib-celery-workerq-installer service
+  template:
+    src: oulib-celery-workerq-installer.service.j2
+    dest: /lib/systemd/system/oulib-celery-workerq-installer.service
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - reload systemd
+    - start oulib-celery-workerq-installer.service
+
 - name: Install oulib-celery-workerq service
   template:
     src: oulib-celery-workerq.service.j2
