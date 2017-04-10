@@ -11,6 +11,12 @@
     enabled: yes
   become: true
 
+- name: wait for oulib-celery-workerq-installer
+  wait_for:
+    path: {{ celery_workerq_dir }}/virtpy/lib/python2.7/site-packages/{{ celery_workerq_imports }}
+    state: present
+  become: true
+
 - name: restart oulib-celery-workerq.service
   service:
     name: oulib-celery-workerq

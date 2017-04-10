@@ -83,6 +83,7 @@
   notify:
     - reload systemd
     - start oulib-celery-workerq-installer.service
+    - wait for oulib-celery-workerq-installer
 
 - name: Install oulib-celery-workerq service
   template:
