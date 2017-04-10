@@ -5,16 +5,10 @@
   become: true
 
 - name: start oulib-celery-workerq-installer.service
-  service:
-    name: oulib-celery-workerq
-    state: started
-    enabled: yes
-  become: true
-
-- name: wait for oulib-celery-workerq-installer
-  wait_for:
-    path: {{ celery_workerq_dir }}/virtpy/lib/python2.7/site-packages/{{ celery_workerq_imports }}
-    state: present
+  command: >
+    systemctl start oulib-celery-workerq-installer
+  args:
+    creates: "{{ celery_workerq_dir }}/virtpy/lib/python2.7/site-packages/{{ celery_workerq_imports }}"
   become: true
 
 - name: restart oulib-celery-workerq.service
