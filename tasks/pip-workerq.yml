@@ -13,15 +13,6 @@
   - name: pymongo
     version: 3.2.1
 
-- name: celery workerq module
-  pip:
-    virtualenv: "{{ celery_workerq_dir }}/virtpy"
-    virtualenv_site_packages: yes
-    requirements: "{{ celery_workerq_dir }}/requirements.txt"
-    state: present
-  notify:
-    - restart oulib-celery-workerq.service
-
 - name: Ensure virtual environment permissions
   file:
     path: "{{ celery_workerq_dir }}/virtpy"
