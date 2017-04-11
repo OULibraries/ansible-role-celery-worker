@@ -24,4 +24,4 @@ CELERY_MONGODB_BACKEND_SETTINGS = {
     "taskmeta_collection": "{{ celery_workerq_mongo_collection }}"
 }
 
-CELERY_IMPORTS = ("{{ celery_workerq_imports }}", )
+CELERY_IMPORTS = ({% for import in celery_workerq_imports %}"{{ import }}"{% if not loop.last %}, {% endif %}{% endfor %})
