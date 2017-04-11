@@ -8,8 +8,10 @@
   command: >
     systemctl start oulib-celery-workerq-installer
   args:
-    creates: "{{ celery_workerq_dir }}/virtpy/lib/python2.7/site-packages/{{ celery_workerq_imports }}"
+    creates: "{{ celery_workerq_dir }}/virtpy/lib/python2.7/site-packages/{{ item.0 }}"
   become: true
+  with_indexed_items:
+    - "{{ celery_workerq_imports }}"
 
 - name: restart oulib-celery-workerq.service
   service:
