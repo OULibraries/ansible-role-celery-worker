@@ -16,4 +16,4 @@ CELERY_MONGODB_BACKEND_SETTINGS = {
     "database": "{{ celery_adminq_mongodb }}",
     "taskmeta_collection": "{{ celery_adminq_mongo_collection }}"
 }
-CELERY_IMPORTS = ("{{ celery_adminq_imports }}", )
+CELERY_IMPORTS = ({% for import in celery_adminq_imports %}"{{ import }}"{% if not loop.last %}, {% endif %}{% endfor %})
