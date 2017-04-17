@@ -94,3 +94,25 @@
   notify:
     - reload systemd
     - restart oulib-celery-workerq.service
+
+- name: Optional dir for oulib-celery-workerq service environment vars
+  file:
+    path: /etc/systemd/system/oulib-celery-workerq.service.d
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+    recurse: yes
+  when: ((celery_workerq_environ_vars) and (celery_workerq_environ_vars is not none))
+
+- name: Optional environment vars for oulib-celery-workerq service
+  template:
+    src: workerq-service.d-override.conf.j2
+    dest: /etc/systemd/system/oulib-celery-workerq.service.d/override.conf
+    mode: 0640
+    owner: root
+    group: root
+  when: ((celery_workerq_environ_vars) and (celery_workerq_environ_vars is not none))
+  notify:
+    - reload systemd
+    - restart oulib-celery-workerq.service

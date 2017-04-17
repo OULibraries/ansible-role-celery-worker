@@ -1,9 +1,9 @@
 import os
 import ssl
 
-{% if ((celery_workerq_extravars is defined) and (celery_workerq_extravars is not none)) %}
-{% for var in celery_workerq_extravars %}
-{{ var.name }} = '{{ var.value }}'
+{% if ((celery_workerq_environ_vars is defined) and (celery_workerq_environ_vars is not none)) %}
+{% for environ_var in celery_workerq_environ_vars %}
+{{ environ_var.name }} = os.environ.get('{{ environ_var.name }}')
 {% endfor %}
 {% endif %}
 

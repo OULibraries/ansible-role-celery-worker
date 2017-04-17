@@ -22,8 +22,8 @@ celery_workerq_imports: !!null
 celery_workerq_hostname: !!null
 celery_workerq_queuename: !!null
 
-# Extra variables to add to celery workerq celeryconfig
-celery_workerq_extravars: !!null
+# Extra variables to pass to celery workerq
+celery_workerq_environ_vars: !!null
 #  - name: somevar
 #    value: somval
 #  - name: anothervar

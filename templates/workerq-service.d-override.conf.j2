@@ -1,0 +1,6 @@
+[Service]
+{% if ((celery_workerq_environ_vars is defined) and (celery_workerq_environ_vars is not none)) %}
+{% for environ_var in celery_workerq_environ_vars %}
+Environment="{{ environ_var.name }}={{ environ_var.value }}"
+{% endfor %}
+{% endif %}
