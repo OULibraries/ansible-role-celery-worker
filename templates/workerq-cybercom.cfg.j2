@@ -1,0 +1,5 @@
+{% if ((celery_workerq_api is defined) and (celery_workerq_api is not none)) %}
+[api]
+base_url = {{ celery_workerq_api.base_url }}
+token = {{ celery_workerq_api.token }}
+{% endif %}

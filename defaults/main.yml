@@ -22,6 +22,11 @@ celery_workerq_imports: !!null
 celery_workerq_hostname: !!null
 celery_workerq_queuename: !!null
 
+# Used if the worker will also be accessing the cybercommons web api
+celery_workerq_api: !!null
+#  base_url:
+#  token:
+
 # Extra variables to pass to celery workerq
 celery_workerq_environ_vars: !!null
 #  - name: somevar

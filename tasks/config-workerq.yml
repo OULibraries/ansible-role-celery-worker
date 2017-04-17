@@ -65,6 +65,14 @@
     group: "{{ celery_workerq_user }}"
     mode: 0640
 
+- name: Optionally template celery workerq cybercommons api
+  template:
+    src: workerq-cybercom.cfg.j2
+    dest: "{{ celery_workerq_dir }}/cybercom.cfg"
+    owner: root
+    group: "{{ celery_workerq_user }}"
+    mode: 0640
+
 - name: Template celery workerq requirements.txt
   template:
     src: workerq-requirements.txt.j2
