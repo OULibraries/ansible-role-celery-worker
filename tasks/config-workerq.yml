@@ -7,6 +7,7 @@
     home: /
     createhome: no
     system: yes
+    groups: "{{ celery_workerq_user_groups }}"
     state: present
 
 - name: Ensure installation directories
