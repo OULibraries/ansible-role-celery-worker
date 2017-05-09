@@ -6,6 +6,7 @@
     state: present
   with_items:
     - gcc
+    - gcc-c++
     - python-devel
     - python-virtualenv
     - libffi-devel
