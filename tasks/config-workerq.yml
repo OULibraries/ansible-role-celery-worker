@@ -82,6 +82,26 @@
     group: "{{ celery_workerq_user }}"
     mode: 0640
 
+- name: Dir for oulib-celery-workerq-installer service environment vars
+  file:
+    path: /etc/systemd/system/oulib-celery-workerq-installer.service.d
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+    recurse: yes
+
+- name: Environment vars for oulib-celery-workerq-installer service
+  copy:
+    src: workerq-installer-service.d-override.conf
+    dest: /etc/systemd/system/oulib-celery-workerq-installer.service.d/override.conf
+    mode: 0640
+    owner: root
+    group: root
+  notify:
+    - reload systemd
+    - start oulib-celery-workerq-installer.service
+
 - name: Install oulib-celery-workerq-installer service
   template:
     src: oulib-celery-workerq-installer.service.j2

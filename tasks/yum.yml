@@ -9,5 +9,6 @@
     - gcc-c++
     - python-devel
     - python-virtualenv
+    - libcurl-devel
     - libffi-devel
     - openssl-devel
