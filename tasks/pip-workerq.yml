@@ -19,3 +19,8 @@
     owner: "{{ celery_workerq_user }}"
     group: "{{ celery_workerq_user }}"
     recurse: yes
+
+- name: Ensure cyberCommons is listed to /etc/hosts
+   lineinfile:
+     destfile: /etc/hosts
+     line: "{{ celery_etc_host_entry }}"
