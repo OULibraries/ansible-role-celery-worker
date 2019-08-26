@@ -9,9 +9,9 @@
     state: present
   with_items:
   - name: celery
-    version: 3.1.22
+    version: "{{ celery_adminq_celery_version }}" 
   - name: pymongo
-    version: 3.2.1
+    version: "{{ celery_adminq_pymongo_version }}"
 
 - name: celery adminq module
   pip:

@@ -6,9 +6,10 @@
     state: present
   with_items:
     - gcc
-    - gcc-c++
-    - python-devel
-    - python-virtualenv
+    - gcc-c++  
+    - "{{ python_pkg }}"
+    - "{{ python_devel_pkg }}"
+    - "{{ python_virtualenv_pkg }}"
     - libcurl-devel
     - libffi-devel
     - openssl-devel

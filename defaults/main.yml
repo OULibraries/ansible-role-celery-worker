@@ -1,8 +1,14 @@
 ---
+# python global defaults
+python_pkg: python
+python_devel_pkg: python-devel
+python_virtualenv_pkg: python-virtualenv
 # defaults file for celery-workerq
 celery_workerq_dir: /opt/oulib/celery-workerq
 celery_workerq_log_dir: /var/opt/oulib/celery-workerq/log
 celery_workerq_zip: !!null
+celery_workerq_celery_version: 3.1.22
+celery_workerq_pymongo_version: 3.2.1
 # Celery workerq unix account
 celery_workerq_user: !!null
 # Secondary groups for users.
@@ -41,6 +47,8 @@ celery_workerq_environ_vars: !!null
 celery_adminq_dir: /opt/oulib/celery-adminq
 celery_adminq_log_dir: /var/opt/oulib/celery-adminq/log
 celery_adminq_git: !!null
+celery_adminq_celery_version: 3.1.22
+celery_adminq_pymongo_version: 3.2.1
 
 # Celery adminq unix account
 celery_adminq_user: !!null

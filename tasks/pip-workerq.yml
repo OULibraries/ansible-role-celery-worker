@@ -1,5 +1,10 @@
 ---
 
+- name: Remove previous virtualenv
+  file: 
+    path: "{{ celery_workerq_dir }}/virtpy"
+    state: absent
+
 - name: Pip dependencies
   pip:
     name: "{{ item.name }}"
@@ -7,11 +12,12 @@
     virtualenv: "{{ celery_workerq_dir }}/virtpy"
     virtualenv_site_packages: yes
     state: present
+    virtualenv_python: "{{ virtualenv_python_version | default('python') }}" 
   with_items:
   - name: celery
-    version: 3.1.22
+    version: "{{ celery_workerq_celery_version }}"
   - name: pymongo
-    version: 3.2.1
+    version: "{{ celery_workerq_pymongo_version }}"
 
 - name: Ensure virtual environment permissions
   file:
@@ -21,6 +27,6 @@
     recurse: yes
 
 - name: Ensure cyberCommons is listed to /etc/hosts
-   lineinfile:
-     destfile: /etc/hosts
-     line: "{{ celery_etc_host_entry }}"
+  lineinfile:
+    destfile: /etc/hosts
+    line: "{{ celery_etc_host_entry }}"
