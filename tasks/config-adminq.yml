@@ -39,7 +39,7 @@
     state: directory
     recurse: yes
 
-- name: Copy pubkeys
+- name: Copy pubkeys from role template
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -51,6 +51,22 @@
       dest: "{{ celery_adminq_dir }}/ssl/client/cert.pem"
     - src: cacert.pem
       dest: "{{ celery_adminq_dir }}/ssl/testca/cacert.pem"
+  when: celery_public_cert is not defined or celery_public_cacert is not defined
+
+- name: Copy pubkeys from inventory
+  copy:
+    content: "{{ item.content }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ celery_adminq_user }}"
+    group: "{{ celery_adminq_user }}"
+    mode: 0644
+  no_log: true
+  with_items:
+    - content: "{{ celery_public_cert }}"
+      dest: "{{ celery_adminq_dir }}/ssl/client/cert.pem"
+    - content: "{{ celery_public_cacert }}"
+      dest: "{{ celery_adminq_dir }}/ssl/testca/cacert.pem"
+  when: celery_public_cert is defined and celery_public_cacert is defined
 
 - name: Copy deployment keys
   copy:
