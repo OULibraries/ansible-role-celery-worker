@@ -17,7 +17,7 @@ BROKER_USE_SSL = {
 }
 CELERY_SEND_EVENTS = True
 CELERY_TASK_RESULT_EXPIRES = None
-CELERY_ACCEPT_CONTENT = ['pickle','json']
+CELERY_ACCEPT_CONTENT = ['json']
 CELERY_RESULT_BACKEND = "{{ celery_workerq_result_backend }}"
 CELERY_MONGODB_BACKEND_SETTINGS = {
     "database": "{{ celery_workerq_mongodb }}",
