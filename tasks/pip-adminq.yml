@@ -1,5 +1,10 @@
 ---
 
+- name: Remove previous virtualenv
+  file:
+    path: "{{ celery_adminq_dir }}/virtpy"
+    state: absent
+
 - name: Pip dependencies
   pip:
     name: "{{ item.name }}"
@@ -7,6 +12,7 @@
     virtualenv: "{{ celery_adminq_dir }}/virtpy"
     virtualenv_site_packages: yes
     state: present
+    virtualenv_python: "{{ virtualenv_python_version | default('python') }}"
   with_items:
   - name: celery
     version: "{{ celery_adminq_celery_version }}" 
