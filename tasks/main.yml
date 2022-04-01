@@ -1,5 +1,7 @@
 ---
 # tasks file for celery-workerq
+- include: mamba.yml
+  become: true
 
 - include: config-workerq.yml
   become: true
