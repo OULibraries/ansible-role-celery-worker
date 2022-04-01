@@ -1,0 +1,25 @@
+---
+
+- name: Activate mamba base environment
+  shell: |
+    eval "$(micromamba shell hook)"
+    micromamba activate
+
+- name: Remove previous environment if it exists
+  file:
+    state: absent
+    path: /home/micromamba/envs/dev_py39
+
+- name: Create new mamba test environment
+  command: "micromamba create -y -n dev_py39 python=3.9 -c conda-forge"
+    
+- name: Activate mamba test environment and install dependencies as test
+  shell: |
+    micromamba activate dev_py39
+    pip install {{ item }}
+  with_items:
+    - requests==2.27.1
+    - celery==5.2.3
+  environment:
+    PATH: /home/micromamba/envs/dev_py39/bin:{{ ansible_env.PATH }}" 
+  
