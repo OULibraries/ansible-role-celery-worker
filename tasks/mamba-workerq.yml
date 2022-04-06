@@ -1,0 +1,34 @@
+---
+
+- name: Copy script for bootstrapping mamba
+  copy:
+    src: create_mamba_env.sh
+    dest: /tmp/create_mamba_env.sh
+    owner: "{{ celery_workerq_user }}"
+    group: micromamba
+    mode: 0744
+
+- name: Remove previous environment if it exists
+  file:
+    state: absent
+    path: "/home/micromamba/{{ celery_workerq_user }}/envs/{{ mamba_env_name }}"
+
+- name: Create and activate new mamba environment for testing
+  shell: >
+    "/tmp/create_mamba_env.sh
+    -e {{ mamba_env_name }}
+    -p /home/micromamba/{{ celery_workerq_user }}
+    -v {{ mamba_python_version }}"
+  become: true
+  become_user: "{{ celery_workerq_user }}"
+
+- name: Install python dependencies
+  shell: |
+    pip install {{ item }}
+  with_items:
+    - requests==2.27.1
+    - celery==5.2.3
+  environment:
+    PATH: "/home/micromamba/{{ celery_workerq_user }}/envs/{{ mamba_env_name }}/bin:{{ ansible_env.PATH }}"
+  become: true
+  become_user: "{{ celery_workerq_user }}"
