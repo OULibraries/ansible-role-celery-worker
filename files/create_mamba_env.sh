@@ -14,15 +14,12 @@ while getopts ":e:p:v:" opt; do
     esac
 
     case $OPTARG in
-        -*) echo "Option $opt needs a valida argument"
+        -*) echo "Option $opt needs a valid argument"
         exit 1
         ;;
     esac
 done
 
-#PY_VERSION="3.9"
-#MAMBA_ENV_NAME="dev_py39"
-#MAMBA_ROOT_PREFIX=/home/micromamba/jrmitchell
 PATH=/opt/oulib/micromamba/bin:$PATH
 
 export MAMBA_ROOT_PREFIX=$MAMBA_ROOT_PREFIX

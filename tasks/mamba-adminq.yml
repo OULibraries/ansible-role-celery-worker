@@ -11,14 +11,14 @@
 - name: Remove previous environment if it exists
   file:
     state: absent
-    path: "/home/micromamba/{{ celery_workerq_user }}/envs/{{ mamba_env_name }}"
+    path: "/home/micromamba/{{ celery_adminq_user }}/envs/{{ mamba_env_name }}"
 
 - name: Create and activate new mamba environment for testing
   shell: >
-    "/tmp/create_mamba_env.sh
-    -e {{ mamba_env_name }}
-    -p /home/micromamba/{{ celery_adminq_user }}
-    -v {{ mamba_python_version }}"
+    /tmp/create_mamba_env.sh
+    -e "{{ mamba_env_name }}"
+    -p /home/micromamba/"{{ celery_adminq_user }}"
+    -v "{{ mamba_python_version }}"
   become: true
   become_user: "{{ celery_adminq_user }}"
 
