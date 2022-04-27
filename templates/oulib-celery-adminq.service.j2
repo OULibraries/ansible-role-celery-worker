@@ -3,7 +3,7 @@ Description=OULibraries oulib-celery/adminq Service
 
 [Service]
 WorkingDirectory={{ celery_adminq_dir }}
-ExecStart={{ celery_adminq_dir }}/virtpy/bin/python {{ celery_adminq_dir }}/virtpy/bin/celery worker --queues {{ celery_adminq_queuename }} --hostname {{ celery_adminq_hostname }} --logfile {{ celery_adminq_log_dir }}/{{ celery_adminq_queuename }}.log --loglevel WARN
+ExecStart=/home/micromamba/{{ celery_adminq_user }}/envs/dev_py39/bin/python celery worker --queues {{ celery_adminq_queuename }} --hostname {{ celery_adminq_hostname }} --logfile {{ celery_adminq_log_dir }}/{{ celery_adminq_queuename }}.log --loglevel WARN
 User={{ celery_adminq_user }}
 
 [Install]
