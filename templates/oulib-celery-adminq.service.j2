@@ -1,5 +1,7 @@
 [Unit]
 Description=OULibraries oulib-celery/adminq Service
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 WorkingDirectory={{ celery_adminq_dir }}
