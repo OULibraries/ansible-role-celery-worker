@@ -26,8 +26,8 @@
   shell: |
     pip install {{ item }}
   with_items:
-    - pymongo==3.12.3
-    - celery==5.2.3
+    - pymongo=="{{ celery_pymongo_version }}"
+    - celery=="{{ celery_celery_version }}"
     - git+"{{ celery_adminq_git }}"
   environment:
     PATH: "/home/micromamba/{{ celery_adminq_user }}/envs/{{ mamba_env_name }}/bin:{{ ansible_env.PATH }}"
