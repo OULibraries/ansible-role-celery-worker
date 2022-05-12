@@ -33,3 +33,8 @@
     PATH: "/home/micromamba/{{ celery_workerq_user }}/envs/{{ mamba_env_name }}/bin:{{ ansible_env.PATH }}"
   become: true
   become_user: "{{ celery_workerq_user }}"
+
+- name: Ensure cyberCommons is listed to /etc/hosts
+  lineinfile:
+    destfile: /etc/hosts
+    line: "{{ celery_etc_host_entry }}"
