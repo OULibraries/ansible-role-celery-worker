@@ -3,6 +3,7 @@
 # defaults file for celery-workerq
 celery_workerq_dir: /opt/oulib/celery-workerq
 celery_workerq_log_dir: /var/opt/oulib/celery-workerq/log
+celery_workerq_git: !!null
 
 # Celery workerq unix account
 

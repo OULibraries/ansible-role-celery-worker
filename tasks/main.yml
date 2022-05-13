@@ -6,8 +6,8 @@
 - include: config-adminq.yml
   become: true
 
-- include: yum.yml
-  become: true
+  #- include: yum.yml
+  #  become: true
 
 - include: mamba-workerq.yml
   become: true
