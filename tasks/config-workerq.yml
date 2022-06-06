@@ -3,6 +3,7 @@
 - name: Add workerq user
   user:
     name: "{{ celery_workerq_user }}"
+    groups: micromamba
     shell: /sbin/nologin
     home: /
     createhome: no

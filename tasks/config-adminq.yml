@@ -6,6 +6,7 @@
     shell: /sbin/nologin
     home: /
     createhome: no
+    groups: "{{ celery_adminq_user_groups }}"
     system: yes
     state: present
 
