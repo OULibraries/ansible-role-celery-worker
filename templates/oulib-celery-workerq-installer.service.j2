@@ -3,7 +3,7 @@ Description=OULibraries oulib-celery/workerq Service Installer
 
 [Service]
 WorkingDirectory={{ celery_workerq_dir }}
-ExecStart=/home/micromamba/{{ celery_workerq_user }}/envs/{{ mamba_env_name }}/bin/python /home/micromamba/{{ celery_workerq_user }}/envs/{{ mamba_env_name }}/bin/pip install -r requirements.txt --logfile {{ celery_workerq_log_dir }}/pip.log --loglevel WARNING
+ExecStart=/home/micromamba/{{ celery_workerq_user }}/envs/{{ mamba_env_name }}/bin/python /home/micromamba/{{ celery_workerq_user }}/envs/{{ mamba_env_name }}/bin/pip install -r requirements.txt --log {{ celery_workerq_log_dir }}/pip.log
 User={{ celery_workerq_user }}
 Type=oneshot
 
